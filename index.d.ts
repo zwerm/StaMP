@@ -279,6 +279,7 @@ declare namespace BotSocket {
             class SubmitQueryData {
                 query: string;
                 display?: string;
+                voice?: string;
             }
 
             // endregion
