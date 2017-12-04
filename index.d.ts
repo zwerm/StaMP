@@ -15,6 +15,7 @@ declare namespace StaMP {
 
         interface NLP {
             FROM: string;
+            SERVICE: string;
 
             processQuery(query: string, source: string, sessionId: string): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
         }
