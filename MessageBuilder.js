@@ -57,11 +57,11 @@ class MessageBuilder {
      * @param {string} text
      * @param {StaMP.Protocol.Messages.SSMLText} [ssmlText='<p>{text}</p>'] ssml text for speaking. '{text}' can be used to represent the original text,
      *                                                  being replaced with `ssml.replace('{text}', text)`. 'false' means no speech
-     * @param {string} [from='sever']
+     * @param {string} [from='server']
      *
      * @return {StaMP.Protocol.Messages.StandardisedTextMessage}
      */
-    static createTextMessage(text, ssmlText = '<p>{text}</p>', from = this.FROM) {
+    static createTextMessage(text, ssmlText = '<p>{text}</p>', from = 'server') {
         return {
             from,
             type: 'text',
@@ -74,11 +74,11 @@ class MessageBuilder {
      * Creates a new text-type message
      *
      * @param {StaMP.Protocol.Messages.TypingState} state
-     * @param {string} [from='sever']
+     * @param {string} [from='server']
      *
      * @return {StaMP.Protocol.Messages.StandardisedTypingMessage}
      */
-    static createTypingMessage(state, from = this.FROM) {
+    static createTypingMessage(state, from = 'server') {
         return {
             from,
             type: 'typing',
@@ -92,11 +92,11 @@ class MessageBuilder {
      * @param {string} url
      * @param {StaMP.Protocol.Messages.SSMLText} [ssmlText='<p>{text}</p>'] ssml text for speaking. '{text}' can be used to represent the original text,
      *                                                  being replaced with `ssml.replace('{text}', text)`. 'false' means no speech
-     * @param {string} [from='sever']
+     * @param {string} [from='server']
      *
      * @return {StaMP.Protocol.Messages.StandardisedImageMessage}
      */
-    static createImageMessage(url, ssmlText = false, from = this.FROM) {
+    static createImageMessage(url, ssmlText = false, from = 'server') {
         return {
             from,
             type: 'image',
@@ -112,11 +112,11 @@ class MessageBuilder {
      * @param {Array.<StaMP.Protocol.Messages.StandardisedQuickReply>} replies
      * @param {StaMP.Protocol.Messages.SSMLText} [ssmlText='<p>{text}</p>'] ssml text for speaking. '{text}' can be used to represent the original text,
      *                                                  being replaced with `ssml.replace('{text}', text)`. 'false' means no speech
-     * @param {string} [from='sever']
+     * @param {string} [from='server']
      *
      * @return {StaMP.Protocol.Messages.StandardisedQuickReplyMessage}
      */
-    static createQuickReplyMessage(text, replies, ssmlText = '<p>{text}</p>', from = this.FROM) {
+    static createQuickReplyMessage(text, replies, ssmlText = '<p>{text}</p>', from = 'server') {
         return {
             from,
             type: 'quick_reply',
