@@ -279,13 +279,7 @@ declare namespace BotSocket {
 
             class SubmitQuery extends Standard {
                 request: 'submit-query';
-                data: SubmitQueryData;
-            }
-
-            class SubmitQueryData {
-                query: string;
-                display?: string;
-                voice?: string;
+                data: StaMP.Protocol.Messages.StandardisedQueryMessage;
             }
 
             // endregion
