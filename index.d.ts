@@ -72,6 +72,7 @@ declare namespace StaMP {
                 type: 'query';
                 query: string;
                 text: string;
+                data?: object;
             }
 
             class StandardisedTextMessage extends StaMPMessage implements HasSSMLText {
