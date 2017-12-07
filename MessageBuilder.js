@@ -52,6 +52,40 @@ class MessageBuilder {
     }
 
     /**
+     * Creates a new query-type message
+     *
+     * @param {string} query
+     * @param {string} [text=query] the text that gets displayed for this message, in the case that the query is a payload or postback value
+     * @param {string} [from='user']
+     *
+     * @return {StaMP.Protocol.Messages.StandardisedQueryMessage}
+     */
+    static createQueryMessage(query, text = query, from = 'user') {
+        return {
+            from,
+            type: 'query',
+            query,
+            text
+        };
+    }
+
+    /**
+     * Creates a new typing-type message
+     *
+     * @param {StaMP.Protocol.Messages.TypingState} state
+     * @param {string} [from='server']
+     *
+     * @return {StaMP.Protocol.Messages.StandardisedTypingMessage}
+     */
+    static createTypingMessage(state, from = 'server') {
+        return {
+            from,
+            type: 'typing',
+            state
+        };
+    }
+
+    /**
      * Creates a new text-type message
      *
      * @param {string} text
@@ -71,18 +105,24 @@ class MessageBuilder {
     }
 
     /**
-     * Creates a new text-type message
+     * Creates a new location-type message
      *
-     * @param {StaMP.Protocol.Messages.TypingState} state
-     * @param {string} [from='server']
+     * @param {string|number} lat
+     * @param {string|number} lng
+     * @param {?string} [mapUrl=null]
+     * @param {?string} [label=null]
+     * @param {string} [from='user']
      *
-     * @return {StaMP.Protocol.Messages.StandardisedTypingMessage}
+     * @return {StaMP.Protocol.Messages.StandardisedLocationMessage}
      */
-    static createTypingMessage(state, from = 'server') {
+    static createLocationMessage(lat, lng, mapUrl = null, label = null, from = 'user') {
         return {
             from,
-            type: 'typing',
-            state
+            type: 'location',
+            lat,
+            lng,
+            mapUrl,
+            label
         };
     }
 
