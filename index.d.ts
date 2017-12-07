@@ -41,6 +41,7 @@ declare namespace StaMP {
 
             type MessageType =
                 'unknown'
+                | 'query'
                 | 'typing'
                 | 'text'
                 | 'location'
@@ -67,8 +68,10 @@ declare namespace StaMP {
                 state: TypingState;
             }
 
-            class StandardisedMetaMessage extends StaMPMessage {
-                resolvedIntent?: string;
+            class StandardisedQueryMessage extends StaMPMessage {
+                type: 'query';
+                query: string;
+                text: string;
             }
 
             class StandardisedTextMessage extends StaMPMessage implements HasSSMLText {
@@ -82,6 +85,7 @@ declare namespace StaMP {
                 lat: number;
                 lng: number;
                 mapUrl?: string;
+                label?: string;
             }
 
             class StandardisedQuickReplyMessage extends StaMPMessage implements HasSSMLText {
