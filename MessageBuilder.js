@@ -3,6 +3,21 @@
  */
 class MessageBuilder {
     /**
+     * Processes an SSML text string; this includes removing all emotes, expanding ampersands, and finally expanding it.
+     * If 'false' is passed, nothing is done.
+     *
+     * @param {StaMP.Protocol.Messages.SSMLText} ssmlText
+     * @param {?string} text
+     *
+     * @return {StaMP.Protocol.Messages.SSMLText}
+     */
+    static processSSMLText(ssmlText, text) {
+        return MessageBuilder.expandSSMLText(
+            MessageBuilder.expandAmpersand(
+                MessageBuilder.removeEmotes(ssmlText)), text);
+    }
+
+    /**
      * Expands an ssml text string, replacing '{text}' with the given text value. If 'false' is passed, then nothing is done
      *
      * @param {StaMP.Protocol.Messages.SSMLText} ssmlText
@@ -23,7 +38,7 @@ class MessageBuilder {
      */
     static removeEmotes(ssmlText) {
         if (typeof ssmlText === 'string') {
-            const eyes = [':', ';'];
+            const eyes = [':', ';', '&'];
             const faces = [
                 ')',
                 ']',
@@ -46,6 +61,21 @@ class MessageBuilder {
                                .reduce((acc, result) => acc.concat(result), []);
 
             return emotes.reduce((acc, emote) => acc.replace(` ${emote}`, ''), ssmlText).trim();
+        }
+
+        return ssmlText;
+    }
+
+    /**
+     * Replaces the character '&' with the word 'and'
+     *
+     * @param {StaMP.Protocol.Messages.SSMLText} ssmlText
+     *
+     * @return {StaMP.Protocol.Messages.SSMLText}
+     */
+    static expandAmpersand(ssmlText) {
+        if (typeof ssmlText === 'string') {
+            return ssmlText.replace(/&/g, 'and');
         }
 
         return ssmlText;
@@ -102,7 +132,7 @@ class MessageBuilder {
             from,
             type: 'text',
             text,
-            ssmlText: MessageBuilder.expandSSMLText(MessageBuilder.removeEmotes(ssmlText), text)
+            ssmlText: MessageBuilder.processSSMLText(ssmlText, text)
         };
     }
 
@@ -143,7 +173,7 @@ class MessageBuilder {
             from,
             type: 'image',
             url,
-            ssmlText: MessageBuilder.expandSSMLText(MessageBuilder.removeEmotes(ssmlText), null)
+            ssmlText: MessageBuilder.processSSMLText(ssmlText, null)
         };
     }
 
@@ -163,7 +193,7 @@ class MessageBuilder {
             from,
             type: 'quick_reply',
             text,
-            ssmlText: MessageBuilder.expandSSMLText(MessageBuilder.removeEmotes(ssmlText), text),
+            ssmlText: MessageBuilder.processSSMLText(ssmlText, text),
             quickReplies: replies
         };
     }
