@@ -17,7 +17,7 @@ declare namespace StaMP {
             FROM: string;
             SERVICE: string;
 
-            processQuery(query: string, source: string, sessionId: string): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
+            processQuery(query: StaMP.Protocol.Messages.StandardisedQueryMessage, source: string, sessionId: string): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
         }
 
         interface MLL {
