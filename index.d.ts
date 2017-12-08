@@ -9,6 +9,12 @@ declare namespace StaMP {
     }
 
     namespace Interfaces {
+        interface UserConversationPair {
+            botUserId: string;
+            conversationId: string;
+            data?: object;
+        }
+
         interface ThirdPartyMessenger<IdentifierType = string> {
             send(messages: Array<StaMP.Protocol.Messages.StaMPMessage>, identifier: IdentifierType): void
         }
