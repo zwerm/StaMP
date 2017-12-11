@@ -271,6 +271,7 @@ declare namespace BotSocket {
             class ClientHandshakeData {
                 sessionId: string;
                 supports: Array<string>;
+                timezone?: string;
             }
 
             class ServerHandshake extends Standard {
