@@ -67,6 +67,7 @@ declare namespace StaMP {
             abstract class StaMPMessage {
                 from: string;
                 type: MessageType;
+                timezone?: string;
             }
 
             class StandardisedTypingMessage extends StaMPMessage {
