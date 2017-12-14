@@ -70,6 +70,11 @@ declare namespace StaMP {
                 timezone?: string;
             }
 
+            class LatLng {
+                lat: string | number;
+                lng: string | number;
+            }
+
             class StandardisedTypingMessage extends StaMPMessage {
                 type: 'typing';
                 state: TypingState;
@@ -79,7 +84,22 @@ declare namespace StaMP {
                 type: 'query';
                 query: string;
                 text: string;
-                data?: object;
+                data?: StandardisedQueryMessageData;
+            }
+
+            /**
+             * Data stored in a StandardisedQueryMessage.
+             *
+             * Can have any dynamically defined properties.
+             * Some properties are defined, but completely optional; to ensure consistency
+             * for data expected to be provided by multiple channels.
+             */
+            class StandardisedQueryMessageData {
+                location?: LatLng;
+                url?: string;
+                label?: string;
+
+                [key: string]: any;
             }
 
             class StandardisedTextMessage extends StaMPMessage implements HasSSMLText {
@@ -88,10 +108,10 @@ declare namespace StaMP {
                 ssmlText: SSMLText;
             }
 
-            class StandardisedLocationMessage extends StaMPMessage {
+            class StandardisedLocationMessage extends StaMPMessage, LatLng {
                 type: 'location';
-                lat: number;
-                lng: number;
+                lat: string | number;
+                lng: number | number;
                 mapUrl?: string;
                 label?: string;
             }
