@@ -12,9 +12,11 @@ class MessageBuilder {
      * @return {StaMP.Protocol.Messages.SSMLText}
      */
     static processSSMLText(ssmlText, text) {
-        return MessageBuilder.expandSSMLText(
-            MessageBuilder.expandAmpersand(
-                MessageBuilder.removeEmotes(ssmlText)), text);
+        return MessageBuilder.expandAmpersand(
+            MessageBuilder.removeEmotes(
+                MessageBuilder.expandSSMLText(ssmlText, text)
+            )
+        );
     }
 
     /**
