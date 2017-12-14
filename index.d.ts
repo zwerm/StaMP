@@ -84,7 +84,7 @@ declare namespace StaMP {
                 type: 'query';
                 query: string;
                 text: string;
-                data?: StandardisedQueryMessageData;
+                data: StandardisedQueryMessageData;
             }
 
             /**
