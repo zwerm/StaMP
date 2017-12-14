@@ -111,7 +111,7 @@ declare namespace StaMP {
             class StandardisedLocationMessage extends StaMPMessage, LatLng {
                 type: 'location';
                 lat: string | number;
-                lng: number | number;
+                lng: string | number;
                 mapUrl?: string;
                 label?: string;
             }
