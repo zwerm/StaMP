@@ -88,7 +88,7 @@ class MessageBuilder {
      *
      * @param {string} query
      * @param {string} [text=query] the text that gets displayed for this message, in the case that the query is a payload or postback value
-     * @param {?object} [data=null]
+     * @param {?StaMP.Protocol.Messages.StandardisedQueryMessageData} [data=null]
      * @param {string} [from='user']
      *
      * @return {StaMP.Protocol.Messages.StandardisedQueryMessage}
