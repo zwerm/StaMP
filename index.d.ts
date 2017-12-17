@@ -15,6 +15,12 @@ declare namespace StaMP {
             data?: object;
         }
 
+        interface ChannelData {
+            label: string;
+
+            [key: string]: any;
+        }
+
         interface ThirdPartyMessenger<IdentifierType = string> {
             send(messages: Array<StaMP.Protocol.Messages.StaMPMessage>, identifier: IdentifierType): void
         }
@@ -23,7 +29,7 @@ declare namespace StaMP {
             FROM: string;
             SERVICE: string;
 
-            processQuery(queryMessage: StaMP.Protocol.Messages.StandardisedQueryMessage, source: string, conversation: UserConversationPair): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
+            processQuery(queryMessage: StaMP.Protocol.Messages.StandardisedQueryMessage, channel: ChannelData, conversation: UserConversationPair): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
         }
 
         interface MLL {
