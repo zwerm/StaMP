@@ -72,6 +72,7 @@ declare namespace StaMP {
 
             type MessageType =
                 'unknown'
+                | 'meta'
                 | 'query'
                 | 'typing'
                 | 'text'
@@ -98,6 +99,24 @@ declare namespace StaMP {
             class LatLng {
                 lat: string | number;
                 lng: string | number;
+            }
+
+            class StandardisedMetaMessage extends StaMPMessage {
+                type: 'meta';
+                meta: StandardisedMetaMessageData;
+            }
+
+            /**
+             * Data stored in a StandardisedMetaMessage.
+             *
+             * Can have any dynamically defined properties.
+             * Some properties are defined, but completely optional, to ensure consistency
+             * for data expected to be provided by multiple sources.
+             */
+            class StandardisedMetaMessageData {
+                service?: string;
+
+                [key: string]: any;
             }
 
             class StandardisedTypingMessage extends StaMPMessage {
