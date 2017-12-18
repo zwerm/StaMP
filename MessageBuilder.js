@@ -86,6 +86,24 @@ class MessageBuilder {
     /**
      * Creates a new query-type message
      *
+     * @param {string} originator The name of the whatever that this StandardisedMetaMessage originated from
+     * @param {StaMP.Protocol.Messages.StandardisedMetaMessageData} data
+     * @param {string} [from='server']
+     *
+     * @return {StaMP.Protocol.Messages.StandardisedMetaMessage}
+     */
+    static createMetaMessage(originator, data, from = 'server') {
+        return {
+            from,
+            type: 'meta',
+            originator,
+            data
+        };
+    }
+
+    /**
+     * Creates a new query-type message
+     *
      * @param {string} query
      * @param {string} [text=query] the text that gets displayed for this message, in the case that the query is a payload or postback value
      * @param {StaMP.Protocol.Messages.StandardisedQueryMessageData} [data={}]
