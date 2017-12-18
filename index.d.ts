@@ -103,7 +103,11 @@ declare namespace StaMP {
 
             class StandardisedMetaMessage extends StaMPMessage {
                 type: 'meta';
-                meta: StandardisedMetaMessageData;
+                /**
+                 * The name of the whatever that this StandardisedMetaMessage originated from
+                 */
+                originator: string;
+                data: StandardisedMetaMessageData;
             }
 
             /**
@@ -114,8 +118,6 @@ declare namespace StaMP {
              * for data expected to be provided by multiple sources.
              */
             class StandardisedMetaMessageData {
-                service?: string;
-
                 [key: string]: any;
             }
 
