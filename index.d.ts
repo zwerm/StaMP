@@ -9,10 +9,29 @@ declare namespace StaMP {
     }
 
     namespace Interfaces {
+        interface Transaction {
+            conversationId: string;
+            channel: string;
+            botUserId: string;
+            message: StaMP.Protocol.Messages.StaMPMessage,
+            type: 'StaMP',
+            transactionId: string;
+            timestamp: string;
+        }
+
         interface UserConversationPair {
             botUserId: string;
             conversationId: string;
-            data?: object;
+            creation: string;
+            expiration: string;
+            lifetime: number;
+
+            data: {};
+
+            firstTransaction: Transaction;
+            firstTransactionTime: string;
+            lastTransaction: Transaction;
+            lastTransactionTime: string;
         }
 
         interface ChannelData {
