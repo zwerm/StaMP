@@ -1,3 +1,72 @@
+namespace Zwerm {
+    namespace BotChannels {
+        type Channels = {
+            botsocket?: BotSocket
+            facebook?: Facebook,
+
+            [key: string]: any;
+        }
+
+        interface BotSocket {
+        }
+
+        interface Facebook {
+            userId: string;
+            store: {
+                first_name?: string,
+                last_name?: string,
+
+                [key: string]: any;
+            }
+        }
+    }
+
+    namespace Database {
+        type UserCategory = {
+            name: string;
+            count: number;
+        };
+
+        type UserStore = {
+            location?: string,
+            categories?: Array<UserCategory>,
+            lat?: number,
+            lng?: number,
+
+            [key: string]: any;
+        }
+
+        interface TransactionEntry {
+            transactionId: string;
+            conversationId: string;
+            botUserId: string;
+            channel: [keyof BotChannels.Channels];
+            type: string;
+            timestamp: Date;
+        }
+
+        class STaMPTransaction implements TransactionEntry {
+            conversationId: string;
+            transactionId: string;
+            channel: [keyof Zwerm.BotChannels.Channels];
+            botUserId: string;
+            type: 'StaMP';
+            timestamp: Date;
+            message: StaMP.Protocol.Messages.StaMPMessage;
+        }
+
+        interface UserEntry {
+            userId: string;
+            botId: string;
+            channels: BotChannels.Channels;
+            creation: Date;
+            lastTransactionTime: Date;
+            lastTransaction: TransactionEntry
+            store: UserStore;
+        }
+    }
+}
+
 declare namespace StaMP {
     namespace NLPs {
         namespace DialogFlow {
