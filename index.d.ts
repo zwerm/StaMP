@@ -42,7 +42,7 @@ namespace Zwerm {
             botUserId: string;
             channel: [keyof BotChannels.Channels];
             type: string;
-            timestamp: Date;
+            timestamp: string;
         }
 
         class STaMPTransaction implements TransactionEntry {
@@ -51,7 +51,7 @@ namespace Zwerm {
             channel: [keyof Zwerm.BotChannels.Channels];
             botUserId: string;
             type: 'StaMP';
-            timestamp: Date;
+            timestamp: string;
             message: StaMP.Protocol.Messages.StaMPMessage;
         }
 
@@ -59,8 +59,8 @@ namespace Zwerm {
             userId: string;
             botId: string;
             channels: BotChannels.Channels;
-            creation: Date;
-            lastTransactionTime: Date;
+            creation: string;
+            lastTransactionTime: string;
             lastTransaction: TransactionEntry
             store: UserStore;
         }
