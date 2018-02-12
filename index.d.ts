@@ -45,14 +45,14 @@ namespace Zwerm {
             timestamp: string;
         }
 
-        class STaMPTransaction implements TransactionEntry {
+        class STaMPTransaction<ChildOfStaMPMessage extends StaMP.Protocol.Messages.StaMPMessage> implements TransactionEntry {
             conversationId: string;
             transactionId: string;
             channel: [keyof Zwerm.BotChannels.Channels];
             botUserId: string;
             type: 'StaMP';
             timestamp: string;
-            message: StaMP.Protocol.Messages.StaMPMessage;
+            message: ChildOfStaMPMessage;
         }
 
         interface UserEntry {
