@@ -73,7 +73,7 @@ namespace Zwerm {
 }
 
 declare namespace StaMP {
-    namespace NLPs {
+    namespace Engines {
         namespace DialogFlow {
             interface CardButton {
                 text: string;
@@ -118,7 +118,7 @@ declare namespace StaMP {
             send(messages: Array<StaMP.Protocol.Messages.StaMPMessage>, identifier: IdentifierType): void
         }
 
-        interface NLP {
+        interface EngineAdapter {
             FROM: string;
             SERVICE: string;
 
