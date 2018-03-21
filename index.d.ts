@@ -110,6 +110,14 @@ declare namespace StaMP {
 
         interface ChannelData {
             label: string;
+            service: string;
+
+            [key: string]: any;
+        }
+
+        interface EngineData {
+            label: string;
+            service: string;
 
             [key: string]: any;
         }
