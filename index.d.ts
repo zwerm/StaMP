@@ -127,8 +127,8 @@ declare namespace StaMP {
         }
 
         interface EngineAdapter {
-            FROM: string;
-            SERVICE: string;
+            from: string;
+            service: string;
 
             processQuery(queryMessage: StaMP.Protocol.Messages.StandardisedQueryMessage, channel: ChannelData, conversation: UserConversationPair): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
         }
