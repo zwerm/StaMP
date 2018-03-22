@@ -108,18 +108,44 @@ declare namespace StaMP {
             lastTransactionTime: string;
         }
 
-        interface ChannelData {
+        /**
+         * Data object containing information about an adapter.
+         */
+        interface AdapterData {
+            /**
+             * The type of this adapter.
+             * @type {string}
+             */
+            type: string;
+            /**
+             * The id of this adapter.
+             * @type {string}
+             */
+            id: string;
+            /**
+             * The display label of this adapter.
+             * @type {string}
+             */
             label: string;
+            /**
+             * The service used by this adapter.
+             * @type {string}
+             */
             service: string;
 
             [key: string]: any;
         }
 
-        interface EngineData {
-            label: string;
-            service: string;
+        /**
+         * Data object containing information about an engine specific adapter.
+         */
+        interface EngineData extends AdapterData {
+        }
 
-            [key: string]: any;
+        /**
+         * Data object containing information about a channel specific adapter.
+         */
+        interface ChannelData extends AdapterData {
         }
 
         interface ThirdPartyMessenger<IdentifierType = string> {
