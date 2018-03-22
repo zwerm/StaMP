@@ -113,15 +113,15 @@ declare namespace StaMP {
          */
         interface AdapterData {
             /**
-             * The type of this adapter.
-             * @type {string}
-             */
-            type: string;
-            /**
              * The id of this adapter.
              * @type {string}
              */
             id: string;
+            /**
+             * The type of this adapter.
+             * @type {string}
+             */
+            type: string;
             /**
              * The display label of this adapter.
              * @type {string}
