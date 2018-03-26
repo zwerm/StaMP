@@ -175,6 +175,8 @@ declare namespace StaMP {
         }
     }
     namespace Protocol {
+        type Letter = Array<Messages.StaMPMessage>;
+
         namespace Messages {
             import HasSSMLText = StaMP.Interfaces.HasSSMLText;
 
