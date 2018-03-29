@@ -186,6 +186,7 @@ declare namespace StaMP {
              * for data expected to be provided by multiple channels.
              */
             class StandardisedQueryMessageData {
+                senderId?: string;
                 location?: LatLng;
                 url?: string;
                 label?: string;
