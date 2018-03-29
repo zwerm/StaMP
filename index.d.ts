@@ -127,6 +127,17 @@ declare namespace StaMP {
                 | 'image'
                 ;
 
+            type QueryType =
+                'payload'
+                | 'text'
+                | 'quick-reply'
+                | 'location'
+                | 'file'
+                | 'image'
+                | 'audio'
+                | 'video'
+                ;
+
             type TypingState = 'on' | 'off';
 
             type StandardisedCardButtonType =
@@ -187,6 +198,8 @@ declare namespace StaMP {
              */
             class StandardisedQueryMessageData {
                 senderId?: string;
+                queryType?: QueryType;
+                rawPayload?: object;
                 location?: LatLng;
                 url?: string;
                 label?: string;
