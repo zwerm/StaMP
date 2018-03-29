@@ -1,6 +1,100 @@
 declare namespace StaMP {
     namespace Engines {
         namespace DialogFlow {
+            namespace Messages {
+                type MessagePlatform =
+                    string
+                    | 'facebook'
+                    | 'kik'
+                    | 'line'
+                    | 'skype'
+                    | 'slack'
+                    | 'telegram'
+                    | 'viber'
+                    ;
+
+                interface DialogFlowMessage {
+                    /**
+                     * Specifies the platform.
+                     */
+                    platform: MessagePlatform;
+                    type: number;
+                }
+
+                interface TextResponse extends DialogFlowMessage {
+                    /**
+                     * Agent's text reply.
+                     */
+                    speech: string;
+                    /**
+                     * 0 for the {@link https://dialogflow.com/docs/rich-messages#text Text response} message type.
+                     */
+                    type: 0;
+                }
+
+                interface ImageMessage extends DialogFlowMessage {
+                    /**
+                     * Public URL to the image file.
+                     */
+                    imageUrl: string;
+                    /**
+                     * 3 for the {@link https://dialogflow.com/docs/rich-messages#image Image} message type.
+                     */
+                    type: 3;
+                }
+
+                interface CardMessage extends DialogFlowMessage {
+                    /**
+                     * Array of objects corresponding to card buttons.
+                     */
+                    buttons: Array<CardButton>;
+                    /**
+                     * Public URL to the image file.
+                     */
+                    imageUrl: string;
+                    /**
+                     * Card subtitle.
+                     */
+                    subtitle: string;
+                    /**
+                     * Card title.
+                     */
+                    title: string;
+                    /**
+                     * 1 for the {@link https://dialogflow.com/docs/rich-messages#card Card} message type.
+                     */
+                    type: 1;
+                }
+
+                interface QuickReplyMessage extends DialogFlowMessage {
+                    /**
+                     * Array of strings corresponding to quick replies.
+                     */
+                    replies: Array<string>;
+                    /**
+                     * Quick replies title.
+                     *
+                     * Required for Facebook Messenger, Kik, and Telegram one-click integrations.
+                     */
+                    title: string;
+                    /**
+                     * 2 for the {@link https://dialogflow.com/docs/rich-messages#quick-replies Quick replies} message type.
+                     */
+                    type: 2;
+                }
+
+                interface CustomPayloadMessage extends DialogFlowMessage {
+                    /**
+                     * 4 for the {@link https://dialogflow.com/docs/rich-messages#custom-payload Custom payload} message type.
+                     */
+                    type: 4;
+                    /**
+                     * Developer defined JSON. It is sent without modifications.
+                     */
+                    payload: object;
+                }
+            }
+
             interface CardButton {
                 text: string;
                 postback: string;
