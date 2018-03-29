@@ -245,6 +245,49 @@ declare namespace StaMP {
         }
     }
 
+    namespace API {
+        interface HasLetter {
+            letter: StaMP.Protocol.Letter
+        }
+
+        // region Channel
+        interface ChannelHttpRequest {
+            /**
+             * Arbitrary id that maps the sending entity to a Zwerm user.
+             *
+             * This id is handled by the third-party service that is
+             * submitting the request to the Zwerm StaMP channel.
+             *
+             * This id will be used as the recipientId for any outgoing channel
+             * message requests that Zwerm aims at the given sender.
+             */
+            senderId: string;
+        }
+
+        interface ChannelPostRequest extends ChannelHttpRequest, HasLetter {
+        }
+
+        // endregion
+        // region Webhook
+        interface WebhookHttpRequest {
+            /**
+             * Arbitrary id that maps the receiving entity to a Zwerm user.
+             *
+             * This id is handled by the third-party service that is
+             * receiving the request from the Zwerm StaMP channel.
+             *
+             * This id will be based off the senderId received from
+             * incoming channel message requests that Zwerm receives
+             */
+            recipientId: string;
+        }
+
+        interface WebhookPostRequest extends WebhookHttpRequest, HasLetter {
+        }
+
+        // endregion
+    }
+
     namespace Interfaces {
         interface Transaction {
             conversationId: string;
