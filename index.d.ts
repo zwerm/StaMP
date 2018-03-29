@@ -95,6 +95,149 @@ declare namespace StaMP {
                 }
             }
 
+            namespace API {
+                interface Context {
+                    /**
+                     * Number of requests after which the context will expire.
+                     */
+                    lifespan: number;
+                    /**
+                     * Context name.
+                     */
+                    name: string;
+                    /**
+                     * Object consisting of "parameter_name":"parameter_value" and
+                     * "parameter_name.original":"original_parameter_value" pairs.
+                     */
+                    parameters: { [key: string]: string; };
+                }
+
+                interface QueryResult {
+                    /**
+                     * An action to take.
+                     */
+                    action: string;
+                    /**
+                     * true if the triggered intent has required and not all
+                     * the required parameter values have been collected.
+                     *
+                     * false if all required parameter values have been collected,
+                     * or if the triggered intent doesn't contain any required parameters.
+                     */
+                    actionIncomplete: boolean;
+                    /**
+                     * Array of context objects
+                     */
+                    contexts: Array<Context>;
+                    /**
+                     * Data about text response(s), rich messages,
+                     * response received from webhook.
+                     */
+                    fulfillment: {
+                        /**
+                         * Array of {@link https://dialogflow.com/docs/reference/agent/message-objects message objects}.
+                         */
+                        messages: Array<Messages.DialogFlowMessage>;
+                        /**
+                         * Text to be pronounced to the user / shown on the screen.
+                         */
+                        speech: string;
+                    }
+                    /**
+                     * Contains data on intents and contexts.
+                     */
+                    metadata: {
+                        /**
+                         * ID of the intent that produced this result.
+                         */
+                        intentId: string;
+                        /**
+                         * Name of the intent that produced this result.
+                         */
+                        intentName: string;
+                        /**
+                         * Indicates whether in the triggered intent webhook
+                         * functionality is enabled for required parameters.
+                         */
+                        webhookForSlotFillingUsed: string;
+                        /**
+                         * Webhook response time in milliseconds.
+                         */
+                        webhookResponseTime: number;
+                        /**
+                         * Indicates whether webhook functionality
+                         * is enabled in the triggered intent.
+                         */
+                        webhookUsed: string;
+                    }
+                    /**
+                     * Object consisting of "parameter_name":"parameter_value" pairs.
+                     */
+                    parameters: { [key: string]: string }
+                    /**
+                     * The query that was used to produce this result.
+                     */
+                    resolvedQuery: string;
+                    /**
+                     * Matching score for the intent.
+                     *
+                     * Number between 0 and 1.
+                     */
+                    score: number;
+                    /**
+                     * Source of the answer.
+                     */
+                    source: string;
+                }
+
+                interface QueryResponse {
+                    id: string;
+                    lang: string;
+                    /**
+                     * Contains the result of the natural language processing.
+                     */
+                    result: QueryResult;
+                    /**
+                     * Session ID
+                     */
+                    sessionId: string;
+                    /**
+                     * Contains data on how the request succeeded or failed.
+                     */
+                    status: StatusObject;
+                    /**
+                     * Date and time of the request in UTC timezone using ISO-8601 format.
+                     */
+                    timestamp: string;
+                }
+
+                /**
+                 * @see {@link https://dialogflow.com/docs/reference/agent/#status_object}
+                 */
+                interface StatusObject {
+                    /**
+                     * HTTP status code.
+                     *
+                     * @see {@link https://dialogflow.com/docs/reference/agent/#status_and_error_codes}
+                     */
+                    code: number;
+                    /**
+                     * Text description of the error, or 'success' if no error
+                     *
+                     * @see {@link https://dialogflow.com/docs/reference/agent/#status_and_error_codes}
+                     */
+                    errorType: string | 'success';
+                    /**
+                     * ID of the error. Optionally returned if the request failed.
+                     */
+                    errorId?: string;
+                    /**
+                     * Text details of the error. Only returned if the request failed.
+                     */
+                    errorDetails?: string;
+                }
+            }
+
             interface CardButton {
                 text: string;
                 postback: string;
