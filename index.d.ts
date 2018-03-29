@@ -103,6 +103,15 @@ declare namespace StaMP {
     namespace Protocol {
         type Letter = Array<Messages.StaMPMessage>;
 
+        type MetaMessage = Messages.StandardisedMetaMessage;
+        type QueryMessage = Messages.StandardisedQueryMessage;
+        type TypingMessage = Messages.StandardisedTypingMessage;
+        type TextMessage = Messages.StandardisedTextMessage;
+        type LocationMessage = Messages.StandardisedLocationMessage;
+        type CardMessage = Messages.StandardisedCardMessage;
+        type QuickReplyMessage = Messages.StandardisedQuickReplyMessage;
+        type ImageMessage = Messages.StandardisedImageMessage;
+
         namespace Messages {
             import HasSSMLText = StaMP.Interfaces.HasSSMLText;
 
