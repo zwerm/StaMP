@@ -315,11 +315,15 @@ declare namespace StaMP {
             send(messages: Array<StaMP.Protocol.Messages.StaMPMessage>, identifier: IdentifierType): void
         }
 
-        interface EngineAdapter {
-            from: string;
+        interface AbstractAdapter {
             service: string;
+        }
 
+        interface EngineAdapter extends AbstractAdapter {
             processQuery(queryMessage: StaMP.Protocol.Messages.StandardisedQueryMessage, channel: ChannelData, conversation: UserConversationPair): Promise<Array<StaMP.Protocol.Messages.StaMPMessage>>;
+        }
+
+        interface ChannelAdapter extends AbstractAdapter {
         }
 
         interface MLL {
