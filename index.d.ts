@@ -201,6 +201,7 @@ declare namespace StaMP {
                 queryType?: QueryType;
                 rawPayload?: object;
                 location?: LatLng;
+                nlp?: object;
                 url?: string;
                 label?: string;
 
