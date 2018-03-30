@@ -711,7 +711,7 @@ declare namespace BotSocket {
             }
 
             class RenderData {
-                messages: Array<StaMP.Protocol.Messages.StaMPMessage>;
+                messages: StaMP.Protocol.Letter;
             }
 
             class RenderMessages extends Render {
