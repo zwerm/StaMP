@@ -603,6 +603,8 @@ declare namespace BotSocket {
     // region Protocol
     namespace Protocol {
         namespace Messages {
+            type Capabilities = Array<Capability>;
+
             type Capability =
                 'handshaking'
 
