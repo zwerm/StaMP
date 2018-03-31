@@ -78,7 +78,7 @@ class ChannelClient {
      * @return {AxiosPromise}
      */
     sendLetter(senderId, letter) {
-        return axios.post(this.fullZwermUrl, { senderId, letter });
+        return axios.post(this.fullZwermUrl, { token: this._authToken, senderId, letter });
     }
 }
 
