@@ -409,6 +409,7 @@ export declare namespace StaMP {
                 | 'quick_reply'
                 | 'card'
                 | 'image'
+                | 'teapot'
                 ;
 
             type QueryType =
@@ -444,6 +445,10 @@ export declare namespace StaMP {
             class LatLng {
                 lat: string | number;
                 lng: string | number;
+            }
+
+            class StandardisedTeapotMessage extends StaMPMessage {
+                type: 'teapot';
             }
 
             class StandardisedMetaMessage extends StaMPMessage {
