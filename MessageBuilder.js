@@ -94,6 +94,7 @@ class MessageBuilder {
      */
     static createMetaMessage(originator, data, from = 'server') {
         return {
+            $StaMP: true,
             from,
             type: 'meta',
             originator,
@@ -113,6 +114,7 @@ class MessageBuilder {
      */
     static createQueryMessage(query, text = query, data = {}, from = 'user') {
         return {
+            $StaMP: true,
             from,
             type: 'query',
             query,
@@ -131,6 +133,7 @@ class MessageBuilder {
      */
     static createTypingMessage(state, from = 'server') {
         return {
+            $StaMP: true,
             from,
             type: 'typing',
             state
@@ -149,6 +152,7 @@ class MessageBuilder {
      */
     static createTextMessage(text, ssmlText = '<p>{text}</p>', from = 'server') {
         return {
+            $StaMP: true,
             from,
             type: 'text',
             text,
@@ -169,6 +173,7 @@ class MessageBuilder {
      */
     static createLocationMessage(lat, lng, mapUrl = null, label = null, from = 'user') {
         return {
+            $StaMP: true,
             from,
             type: 'location',
             lat,
@@ -190,6 +195,7 @@ class MessageBuilder {
      */
     static createImageMessage(url, ssmlText = false, from = 'server') {
         return {
+            $StaMP: true,
             from,
             type: 'image',
             url,
@@ -210,6 +216,7 @@ class MessageBuilder {
      */
     static createQuickReplyMessage(text, replies, ssmlText = '<p>{text}</p>', from = 'server') {
         return {
+            $StaMP: true,
             from,
             type: 'quick_reply',
             text,

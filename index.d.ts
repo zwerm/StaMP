@@ -431,6 +431,10 @@ declare namespace StaMP {
             type SSMLText = string | boolean | false;
 
             abstract class StaMPMessage {
+                /**
+                 * Identifies the message as being StaMP
+                 */
+                $StaMP: 'StaMP' | boolean | true;
                 from: string;
                 type: MessageType;
                 timezone?: string;
