@@ -428,7 +428,7 @@ declare namespace StaMP {
                 'postback'
                 ;
 
-            type SSMLText = string | false;
+            type SSMLText = string | boolean | false;
 
             abstract class StaMPMessage {
                 from: string;
