@@ -412,7 +412,8 @@ declare namespace StaMP {
                 ;
 
             type QueryType =
-                'payload'
+                'unsupported'
+                | 'payload'
                 | 'text'
                 | 'quick-reply'
                 | 'location'
