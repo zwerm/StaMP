@@ -487,6 +487,7 @@ declare namespace StaMP {
              */
             class StandardisedQueryMessageData {
                 senderId?: string;
+                stampardisedFrom: object | null;
                 queryType?: QueryType;
                 rawPayload?: object;
                 location?: LatLng;
