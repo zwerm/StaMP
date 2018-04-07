@@ -1,4 +1,4 @@
-declare namespace StaMP {
+export declare namespace StaMP {
     namespace Engines {
         namespace DialogFlow {
             namespace Messages {
@@ -549,7 +549,7 @@ declare namespace StaMP {
     }
 }
 
-declare namespace BotSocket {
+export declare namespace BotSocket {
     namespace Server {
         namespace Event {
             class SocketConnection {
