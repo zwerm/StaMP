@@ -1,7 +1,32 @@
 /**
- *
+ * @static
  */
 class MessageBuilder {
+    /**
+     * Builds a `fromSender` property `string`, that's meant to be attached to a `StaMP` message as the `from` property.
+     *
+     * @param {StaMP.Protocol.SenderClassification} senderClassification the classification of the sender of the `StaMP` message.
+     * @param {string} senderIdTag the identifying tag provided by the sender of the `StaMP` message.
+     * @param {string} originatingService the service that the original message originated from originally.
+     *
+     * @return {string}
+     */
+    static buildFromSenderString(senderClassification, senderIdTag, originatingService = '') {
+        return `${senderClassification}:${senderIdTag}:${originatingService}`;
+    }
+
+    /**
+     * Splits a `fromSender` property `string`, that came from the `from` property of a `StaMP` message.
+     *
+     * @param {string} fromSenderString
+     *
+     * @return {Array<string>} an array of two to three elements.
+     *                          The first element will be the sender's classification, the second from tag, and the third the originating service.
+     */
+    static splitFromSenderString(fromSenderString) {
+        return fromSenderString.split(':');
+    }
+
     /**
      * Processes an SSML text string; this includes removing all emotes, expanding ampersands, and finally expanding it.
      * If 'false' is passed, nothing is done.
@@ -235,10 +260,6 @@ class MessageBuilder {
      */
     static createQuickReply(title, payload = title, imageUrl = null) {
         return { title, payload, imageUrl };
-    }
-
-    constructor() {
-
     }
 }
 
