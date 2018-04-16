@@ -1,6 +1,8 @@
 export declare namespace StaMP {
+    // region namespace: engines
     namespace Engines {
         namespace DialogFlow {
+            // region namespace: DialogFlow.Messages
             namespace Messages {
                 type MessagePlatform =
                     string
@@ -94,7 +96,8 @@ export declare namespace StaMP {
                     payload: object;
                 }
             }
-
+            // endregion
+            // region namespace: DialogFlow.API
             namespace API {
                 interface Context {
                     /**
@@ -238,13 +241,16 @@ export declare namespace StaMP {
                 }
             }
 
+            // endregion
+
             interface CardButton {
                 text: string;
                 postback: string;
             }
         }
     }
-
+    // endregion
+    // region namespace: API
     namespace API {
         interface HasLetter {
             letter: StaMP.Protocol.Letter
@@ -287,7 +293,8 @@ export declare namespace StaMP {
 
         // endregion
     }
-
+    // endregion
+    // region namespace: Interfaces
     namespace Interfaces {
         interface Transaction {
             conversationId: string;
@@ -384,6 +391,8 @@ export declare namespace StaMP {
             ssmlText: StaMP.Protocol.Messages.SSMLText
         }
     }
+    // endregion
+    // region namespace: Protocol
     namespace Protocol {
         type Letter = Array<Messages.StaMPMessage>;
 
@@ -395,6 +404,7 @@ export declare namespace StaMP {
         type CardMessage = Messages.StandardisedCardMessage;
         type QuickReplyMessage = Messages.StandardisedQuickReplyMessage;
         type ImageMessage = Messages.StandardisedImageMessage;
+        type TeapotMessage = Messages.StandardisedTeapotMessage;
 
         namespace Messages {
             import HasSSMLText = StaMP.Interfaces.HasSSMLText;
@@ -447,6 +457,7 @@ export declare namespace StaMP {
                 lng: string | number;
             }
 
+            // region message classes
             class StandardisedTeapotMessage extends StaMPMessage {
                 type: 'teapot';
             }
@@ -550,10 +561,14 @@ export declare namespace StaMP {
                 url: string;
                 ssmlText: SSMLText;
             }
+
+            // endregion
         }
     }
+    // endregion
 }
 
+// region namespace: BotSocket
 export declare namespace BotSocket {
     namespace Server {
         namespace Event {
@@ -570,7 +585,7 @@ export declare namespace BotSocket {
     namespace Client {
 
     }
-    // region Performing
+    // region namespace: Performing
     namespace Performing {
         type PerformanceState =
             'created'
@@ -611,7 +626,7 @@ export declare namespace BotSocket {
         }
     }
     // endregion
-    // region Protocol
+    // region namespace: Protocol
     namespace Protocol {
         namespace Messages {
             type Capabilities = Array<Capability>;
@@ -813,3 +828,4 @@ export declare namespace BotSocket {
     }
     // endregion
 }
+// endregion
