@@ -396,6 +396,16 @@ export declare namespace StaMP {
     namespace Protocol {
         type Letter = Array<Messages.StaMPMessage>;
 
+        type SenderClassification =
+            string
+            | 'bot'
+            | 'server'
+            | 'engine'
+            | 'channel'
+            | 'user'
+            | 'agent'
+            ;
+
         type MetaMessage = Messages.StandardisedMetaMessage;
         type QueryMessage = Messages.StandardisedQueryMessage;
         type TypingMessage = Messages.StandardisedTypingMessage;
