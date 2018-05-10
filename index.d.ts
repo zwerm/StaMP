@@ -408,6 +408,7 @@ export declare namespace StaMP {
 
         type MetaMessage = Messages.StandardisedMetaMessage;
         type QueryMessage = Messages.StandardisedQueryMessage;
+        type EventMessage = Messages.StandardisedEventMessage;
         type TypingMessage = Messages.StandardisedTypingMessage;
         type TextMessage = Messages.StandardisedTextMessage;
         type LocationMessage = Messages.StandardisedLocationMessage;
@@ -423,6 +424,7 @@ export declare namespace StaMP {
                 'unknown'
                 | 'meta'
                 | 'query'
+                | 'event'
                 | 'typing'
                 | 'text'
                 | 'location'
@@ -520,6 +522,25 @@ export declare namespace StaMP {
                 nlp?: object;
                 url?: string;
                 label?: string;
+
+                [key: string]: any;
+            }
+
+            class StandardisedEventMessage<PayloadData extends object, DataData extends StandardisedEventMessageData> extends StaMPMessage {
+                type: 'event';
+                event: string;
+                payload: PayloadData;
+                data: DataData;
+            }
+
+            /**
+             * Data stored in a StandardisedEventMessage.
+             *
+             * Can have any dynamically defined properties.
+             * Some properties are defined, but completely optional;
+             */
+            class StandardisedEventMessageData {
+                value?: number;
 
                 [key: string]: any;
             }
