@@ -469,11 +469,13 @@ export declare namespace StaMP {
                 lng: string | number;
             }
 
-            // region message classes
+            // region message: Teapot
             class StandardisedTeapotMessage extends StaMPMessage {
                 type: 'teapot';
             }
 
+            // endregion
+            // region message: Meta
             class StandardisedMetaMessage extends StaMPMessage {
                 type: 'meta';
                 /**
@@ -494,11 +496,15 @@ export declare namespace StaMP {
                 [key: string]: any;
             }
 
+            // endregion
+            // region message: Typing
             class StandardisedTypingMessage extends StaMPMessage {
                 type: 'typing';
                 state: TypingState;
             }
 
+            // endregion
+            // region message: Query
             class StandardisedQueryMessage extends StaMPMessage {
                 type: 'query';
                 query: string;
@@ -526,6 +532,9 @@ export declare namespace StaMP {
                 [key: string]: any;
             }
 
+            // endregion
+            // region message: Event
+
             class StandardisedEventMessage<PayloadData extends object, DataData extends StandardisedEventMessageData> extends StaMPMessage {
                 type: 'event';
                 event: string;
@@ -545,11 +554,17 @@ export declare namespace StaMP {
                 [key: string]: any;
             }
 
+            // endregion
+            // region message: Text
+
             class StandardisedTextMessage extends StaMPMessage implements HasSSMLText {
                 type: 'text';
                 text: string;
                 ssmlText: SSMLText;
             }
+
+            // endregion
+            // region message: Location
 
             class StandardisedLocationMessage extends StaMPMessage, LatLng {
                 type: 'location';
@@ -558,6 +573,9 @@ export declare namespace StaMP {
                 mapUrl?: string;
                 label?: string;
             }
+
+            // endregion
+            // region message: QuickReply
 
             class StandardisedQuickReplyMessage extends StaMPMessage implements HasSSMLText {
                 type: 'quick_reply';
@@ -571,6 +589,9 @@ export declare namespace StaMP {
                 payload: string;
                 imageUrl?: string;
             }
+
+            // endregion
+            // region message: Card
 
             class StandardisedCardMessage extends StaMPMessage {
                 type: 'card';
@@ -586,6 +607,9 @@ export declare namespace StaMP {
                 text: string;
                 value: string;
             }
+
+            // endregion
+            // region message: Image
 
             class StandardisedImageMessage extends StaMPMessage implements HasSSMLText {
                 type: 'image';
