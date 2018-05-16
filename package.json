@@ -1,13 +1,13 @@
 {
     "name": "stamp",
     "version": "1.0.0",
-    "description": "StaMP standards as typings file",
+    "description": "Standardised Messaging Protocol (StaMP) typings and utilities",
+    "license": "ISC",
+    "author": "Gareth Jones",
     "main": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Gareth Jones",
-    "license": "ISC",
     "dependencies": {
         "axios": "^0.18.0"
     }
