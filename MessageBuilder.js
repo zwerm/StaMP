@@ -149,6 +149,27 @@ class MessageBuilder {
     }
 
     /**
+     * Creates a new StaMP `event` message.
+     *
+     * @param {string} event
+     * @param {Object} [payload={}]
+     * @param {Object} [data={}]
+     * @param {string} [from='user']
+     *
+     * @return {StaMP.Protocol.EventMessage}
+     */
+    static createEventMessage(event, payload = {}, data = {}, from = 'user') {
+        return {
+            $StaMP: true,
+            from,
+            type: 'event',
+            event,
+            payload,
+            data
+        };
+    }
+
+    /**
      * Creates a new typing-type message
      *
      * @param {StaMP.Protocol.Messages.TypingState} state
