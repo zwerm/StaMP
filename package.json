@@ -1,6 +1,6 @@
 {
     "name": "@stampit/stamp",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "Standardised Messaging Protocol (StaMP) typings and utilities",
     "license": "ISC",
     "author": "Gareth Jones",
