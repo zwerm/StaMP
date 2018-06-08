@@ -549,7 +549,7 @@ export declare namespace StaMP {
              * Some properties are defined, but completely optional;
              */
             interface StandardisedEventMessageData {
-                value?: number;
+                conversionValue?: number;
 
                 [key: string]: any;
             }
