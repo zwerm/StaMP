@@ -548,7 +548,7 @@ export declare namespace StaMP {
              * Can have any dynamically defined properties.
              * Some properties are defined, but completely optional;
              */
-            class StandardisedEventMessageData {
+            interface StandardisedEventMessageData {
                 value?: number;
 
                 [key: string]: any;
