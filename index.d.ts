@@ -621,4 +621,26 @@ export declare namespace StaMP {
         }
     }
     // endregion
+    // region namespace: events
+    namespace Events {
+        // region namespace: UnknownMessageEvent
+        type UNKNOWN_MESSAGE = 'stamp.messages.unknown';
+        type UnknownMessageEvent = UnknownMessageEvent.UnknownMessageEvent;
+
+        namespace UnknownMessageEvent {
+            interface UnknownMessageEvent extends StaMP.Protocol.Messages.StandardisedEventMessage<UnknownMessageEventData> {
+                event: UNKNOWN_MESSAGE;
+                payload: UnknownMessageEventData;
+            }
+
+            interface UnknownMessageEventData {
+                /**
+                 * JSON string of the original message
+                 */
+                originalMessage: string;
+            }
+        }
+        // endregion
+    }
+    // endregion
 }
