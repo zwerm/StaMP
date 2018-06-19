@@ -2,6 +2,17 @@
  * @static
  */
 class MessageBuilder {
+    // region getter constants
+    /**
+     * @return {StaMP.Events.UNKNOWN_MESSAGE}
+     * @static
+     */
+    static get UNKNOWN_MESSAGE_EVENT() {
+        return 'stamp.messages.unknown';
+    }
+
+    // endregion
+
     /**
      * Builds a `fromSender` property `string`, that's meant to be attached to a `StaMP` message as the `from` property.
      *
