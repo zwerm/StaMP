@@ -181,6 +181,34 @@ class MessageBuilder {
     }
 
     /**
+     * Builds an {@link StaMP.Events.UNKNOWN_MESSAGE `UNKNOWN_MESSAGE`} event.
+     *
+     * If `unknownMessage` is *not* of type `string`, it'll be passed to `JSON.stringify`.
+     *
+     * @param {?Object} originalMessage the original message that is unknown by StaMP.
+     * @param {Object} [data={}] additional data to include about this event.
+     * @param {string} [from='server']
+     *
+     * @return {StaMP.Events.UnknownMessageEvent}
+     */
+    static buildUnknownMessageEvent(originalMessage, data = {}, from = 'user') {
+        const payload = {
+            originalMessage: typeof originalMessage === 'string'
+                ? originalMessage
+                : JSON.stringify(originalMessage)
+        };
+
+        return {
+            $StaMP: true,
+            from,
+            type: 'event',
+            event: MessageBuilder.UNKNOWN_MESSAGE_EVENT,
+            payload,
+            data
+        };
+    }
+
+    /**
      * Creates a new typing-type message
      *
      * @param {StaMP.Protocol.Messages.TypingState} state
