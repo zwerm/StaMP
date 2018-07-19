@@ -550,6 +550,10 @@ export declare namespace StaMP {
              */
             interface StandardisedEventMessageData {
                 conversionValue?: number;
+                /**
+                 * Fallback query to use in the event that events are not supported.
+                 */
+                query?: string;
 
                 [key: string]: any;
             }
