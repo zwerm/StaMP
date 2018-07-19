@@ -535,7 +535,7 @@ export declare namespace StaMP {
             // endregion
             // region message: Event
 
-            interface StandardisedEventMessage<PayloadData extends object, DataData extends object | StandardisedEventMessageData> extends StaMPMessage {
+            interface StandardisedEventMessage<PayloadData extends object, DataData extends StandardisedEventMessageData> extends StaMPMessage {
                 type: 'event';
                 event: string;
                 payload: PayloadData;
