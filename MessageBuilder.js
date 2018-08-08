@@ -252,8 +252,8 @@ class MessageBuilder {
      *
      * @param {string|number} lat
      * @param {string|number} lng
-     * @param {?string} [mapUrl=null]
-     * @param {?string} [label=null]
+     * @param {?string} [mapUrl=null] Deprecated.
+     * @param {?string} [label=null] Deprecated.
      * @param {string} [from='user']
      *
      * @return {StaMP.Protocol.Messages.StandardisedLocationMessage}
