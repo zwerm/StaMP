@@ -3,6 +3,9 @@
 StaMP is a messaging protocol designed to make working with multiple messaging platforms easier, 
  by providing a standardised data format for how message objects are represented.
 
+# draft-01
+This package serves as a first informal draft of the protocol.
+
 It also includes interfaces, classes, and types for working with StaMP.
 
 StaMP is driven by **M**essaging **L**anguage **L**ocalisers (MLLs), which transform messages from one locale to another.

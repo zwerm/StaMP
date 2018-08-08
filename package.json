@@ -2,8 +2,8 @@
     "name": "@stampit/stamp",
     "version": "0.0.0",
     "description": "Standardised Messaging Protocol (StaMP) typings and utilities",
-    "license": "ISC",
-    "author": "Gareth Jones",
+    "license": "MIT",
+    "author": "Prefer Limited",
     "main": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
