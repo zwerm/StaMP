@@ -12,6 +12,8 @@ StaMP is driven by **M**essaging **L**anguage **L**ocalisers (MLLs), which trans
 
 Usually message processing services will have a *StaMPardiser*, while message sending/receiving services will have a *ThirdPartyLocaliser*.
 
+#### The Message types
+
 #### The StaMPardiser interface
 
 A StaMPardiser is a special type of MLL that accepts messages of locale type T, and returns messages of locale type StaMP.
@@ -69,3 +71,120 @@ StaMP messages include meta-data about their original source.
 
 By including this metadata, it makes StaMP a loss-less standard; 
 Your services can still perform platform-dependent logic while continuing to be StaMP-compliant.
+
+# Message builder
+This package includes a library to easily build StaMP messages.
+
+To use it in your project, require the `MessageBuilder` class.
+```javascript
+const StaMPBuilder = require('@stampit/stamp/MessageBuilder');
+```
+
+#### Text message
+Text messages are the most basic response from a server.
+```javascript
+StaMPBuilder.createTextMessage('hello world');
+```
+They can have an additional argument to provide instructions for speech synthesis in [SSML](https://en.wikipedia.org/wiki/Speech_Synthesis_Markup_Language).
+```javascript
+StaMPBuilder.createTextMessage('hello world', '<p>hello <emphasis level="strong">world</emphasis></p>');
+```
+
+#### Image message
+Sends an image response from the server.
+```javascript
+// Displays a cute kitten 
+StaMPBuilder.createImageMessage('https://i.imgur.com/qOFRvNm.jpg');
+```
+Use the second argument to provide instructions for speech synthesis in [SSML](https://en.wikipedia.org/wiki/Speech_Synthesis_Markup_Language).
+```javascript
+// Describes the picture in speech
+StaMPBuilder.createImageMessage('https://i.imgur.com/qOFRvNm.jpg', '<p>A black and white kitten looking out of a window.</p>');
+```
+
+#### Quick reply message
+Use quick reply messages to suggest responses to a user. This message type always includes a standard text message which is send to the user first. 
+```javascript
+StaMPBuilder.createQuickReplyMessage('Try one of these:', [
+    StaMPBuilder.createQuickReply('I need help'),
+    StaMPBuilder.createQuickReply('Start over', 'reset'),
+]);
+```
+The second argument can be used to send a different payload back to the server than what is displayed to the user. This can be useful for navigation intents that mainly react to certain keywords. 
+
+Quick replies event support images. You always need to provide a `title` for accessibility and as a fallback.
+```javascript
+StaMPBuilder.createQuickReplyMessage('Try one of these:', [
+    StaMPBuilder.createQuickReply('I like this', 'like', 'https://example.com/thumbs-up.png'),
+]);
+``` 
+
+#### Card message
+Cards are the most complex form of response a server can create. They combine various pieces of information to one semantic block.
+```javascript
+StaMPBuilder.createCardMessage('Abbey Road', 'The Beatles', 'https://example.com/abbey-road-cover.jpg');
+```
+This will create a output similar to this:
+
+![Image a card representing the Abbey Road album](docs/abbey-road-card.png)
+
+Please note that the `subtitle` and `imageUrl` parameters are optional and can be omitted.
+
+Cards can also have buttons, which are very similar to quick replies.
+```javascript
+StaMPBuilder.createCardMessage('Abbey Road', 'The Beatles', null, [
+    StaMPBuilder.createCardButton('Buy album', 'Buy upc:733966091699'),
+    StaMPBuilder.createCardButton('Play album', 'Play spotify:album:4slBy2W4HhYDvRIgktSV8d'),
+]);
+```
+This will create a output similar to this:
+
+![Image a card with action buttons representing the Abbey Road album](docs/abbey-road-card-buttons.png)
+
+The second argument on the card button can be used to pass a specific value on, like a product id.  
+In this example we set the Universal Product Code and the Spotify Uri. It is up to a NLU and engine to make use of these values.
+
+#### Location message
+Used to send a location or map view to the user.
+```javascript
+// Show Wellington, New Zealand on a map
+StaMPBuilder.createLocationMessage(-41.28664, 174.77557);
+```
+The other parameters of this function are deprecated.
+
+#### Query message
+Query messages are send from a user to a server. They represent the utterance of a user in a NLU.
+```javascript
+StaMPBuilder.createQueryMessage('Get started');
+```
+Sometimes you'd like to send a different message than shown in the message window. You can do this using the second argument.
+```javascript
+StaMPBuilder.createQueryMessage('Hello bot!', 'Get started');
+```
+In this case the bot engine receives the second string as value, however a client should render the first string.
+
+#### Event message
+Clients can send events to a supported processing engine. Events are just another way of triggering intents in a NLU.
+```javascript
+StaMPBuilder.createEventMessage('WELCOME');
+```
+Some engines support an additional payload on events which can be used by the NLU to composite a response.
+```javascript
+StaMPBuilder.createEventMessage('WELCOME', {
+    name: 'Jane'
+});
+```
+In this example a NLU might choose to use the `name` property of the payload object to call the user by their name.
+
+#### Typing message
+Typing messages are typically send from the server to indicate to the user that the bot is working on a  response.
+```javascript
+StaMPBuilder.createTypingMessage('on', 'server');
+StaMPBuilder.createTypingMessage('off', 'server');
+```
+They can also be send by a client (a user), however most receivers will ignore this information.
+```javascript
+StaMPBuilder.createTypingMessage('on', 'user');
+StaMPBuilder.createTypingMessage('off', 'user');
+```
+

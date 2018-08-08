@@ -250,8 +250,8 @@ class MessageBuilder {
      *
      * @param {string|number} lat
      * @param {string|number} lng
-     * @param {?string} [mapUrl=null]
-     * @param {?string} [label=null]
+     * @param {?string} [mapUrl=null] Deprecated.
+     * @param {?string} [label=null] Deprecated.
      * @param {string} [from='user']
      *
      * @return {StaMP.Protocol.Messages.StandardisedLocationMessage}
@@ -289,7 +289,7 @@ class MessageBuilder {
     }
 
     /**
-     * Creates a new text-type message
+     * Creates a new quick-reply-type message
      *
      * @param {string} text
      * @param {Array.<StaMP.Protocol.Messages.StandardisedQuickReply>} replies
@@ -320,6 +320,53 @@ class MessageBuilder {
      */
     static createQuickReply(title, payload = title, imageUrl = null) {
         return { title, payload, imageUrl };
+    }
+
+    /**
+     * Creates a new card-type message
+     *
+     * @param {string} title
+     * @param {?string} [subtitle=null]
+     * @param {?string} [imageUrl=null]
+     * @param {Array.<StaMP.Protocol.Messages.StandardisedCardButton>} buttons
+     * @param {?string} [clickUrl=null]
+     * @param {string} [from='server']
+     *
+     * @return {StaMP.Protocol.Messages.StandardisedCardMessage}
+     */
+    static createCardMessage(title, subtitle = null, imageUrl = null, buttons = [], clickUrl = null, from = 'server') {
+        const card = {
+            $StaMP: true,
+            from,
+            type: 'card',
+            title
+        };
+
+        if (subtitle) {
+            card.subtitle = subtitle;
+        }
+        if (imageUrl) {
+            card.imageUrl = imageUrl;
+        }
+        if (clickUrl) {
+            card.clickUrl = clickUrl;
+        }
+
+        return card;
+    }
+
+    /**
+     *
+     * @param {string} text
+     * @param {string} value
+     * @return {StaMP.Protocol.Messages.StandardisedCardButton}
+     */
+    static createCardButton(text, value) {
+        return {
+            type: 'postback',
+            text,
+            value,
+        };
     }
 }
 
