@@ -1,5 +1,3 @@
-import { StandardisedCardButtonType } from "./index";
-
 /**
  * @static
  */
@@ -356,7 +354,6 @@ class MessageBuilder {
 
         return card;
     }
-
 
     /**
      *
