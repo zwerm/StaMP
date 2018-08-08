@@ -126,6 +126,8 @@ StaMPBuilder.createCardMessage('Abbey Road', 'The Beatles', 'https://example.com
 ```
 This will create a output similar to this:
 
+![Image a card representing the Abbey Road album](docs/abbey-road-card.png)
+
 Please note that the `subtitle` and `imageUrl` parameters are optional and can be omitted.
 
 Cards can also have buttons, which are very similar to quick replies.
@@ -137,6 +139,8 @@ StaMPBuilder.createCardMessage('Abbey Road', 'The Beatles', null, [
 ```
 This will create a output similar to this:
 
+![Image a card with action buttons representing the Abbey Road album](docs/abbey-road-card-buttons.png)
+
 The second argument on the card button can be used to pass a specific value on, like a product id.  
 In this example we set the Universal Product Code and the Spotify Uri. It is up to a NLU and engine to make use of these values.
 
@@ -146,6 +150,7 @@ Used to send a location or map view to the user.
 // Show Wellington, New Zealand on a map
 StaMPBuilder.createLocationMessage(-41.28664, 174.77557);
 ```
+The other parameters of this function are deprecated.
 
 #### Query message
 Query messages are send from a user to a server. They represent the utterance of a user in a NLU.
