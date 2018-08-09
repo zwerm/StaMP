@@ -339,7 +339,8 @@ class MessageBuilder {
             $StaMP: true,
             from,
             type: 'card',
-            title
+            title,
+            buttons
         };
 
         if (subtitle) {
