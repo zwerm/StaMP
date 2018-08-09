@@ -1,6 +1,6 @@
 {
     "name": "@stampit/stamp",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Standardised Messaging Protocol (StaMP) typings and utilities",
     "license": "MIT",
     "author": "Prefer Limited",
